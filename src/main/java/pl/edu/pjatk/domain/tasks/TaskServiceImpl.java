@@ -13,8 +13,7 @@ class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDto> getTasksByDone(boolean done) {
-        List<Task> allByDone = taskRepository.findAllByDone(done);
-        return allByDone.stream()
+        return taskRepository.findAllByDone(done).stream()
                 .map(TaskDto::mapToDto)
                 .toList();
     }

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 import pl.edu.pjatk.domain.tasks.TaskDto;
 import pl.edu.pjatk.domain.tasks.TaskService;
 
+import java.util.Comparator;
+
 @Component
 @UIScope
 class GridLayoutView extends VerticalLayout {
@@ -65,12 +67,13 @@ class GridLayoutView extends VerticalLayout {
                 .setFlexGrow(0);
     }
 
-    private void setupActiveTasksGrid() {//todo: naprawić sortowanie
+    private void setupActiveTasksGrid() {
         activeTasksGrid.addThemeVariants(GridVariant.LUMO_COLUMN_BORDERS, GridVariant.ROW_STRIPES);
         activeTasksGrid.addComponentColumn(ActiveTaskLayoutView::new)
                 .setHeader(TASK_NAME_COLUMN)
                 .setSortable(true)
-                .setTextAlign(ColumnTextAlign.START);
+                .setTextAlign(ColumnTextAlign.START)
+                .setComparator(Comparator.comparing(TaskDto::name, String.CASE_INSENSITIVE_ORDER));
         activeTasksGrid.addComponentColumn(this::getDoneCheckbox)
                 .setHeader(DONE_COLUMN)
                 .setTextAlign(ColumnTextAlign.END)
