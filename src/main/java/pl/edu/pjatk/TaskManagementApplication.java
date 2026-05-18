@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @StyleSheet(Lumo.STYLESHEET)
+@StyleSheet(Lumo.UTILITY_STYLESHEET)
 @ColorScheme(ColorScheme.Value.DARK)
 @SpringBootApplication
 public class TaskManagementApplication implements AppShellConfigurator {

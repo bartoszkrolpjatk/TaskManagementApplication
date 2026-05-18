@@ -25,25 +25,21 @@ class MockDataCreator {
                             Task.builder()
                                     .name("Zrobić zakupy spożywcze")
                                     .description("Kupić mleko, jajka, chleb, pomidory i kawę ziarnistą.")
-                                    .dueDate(LocalDate.now())
                                     .done(false)
                                     .build(),
                             Task.builder()
                                     .name("Nauczyć się Vaadina")
                                     .description("Przerobić oficjalny tutorial z dokumentacji Vaadin Flow.")
-                                    .dueDate(LocalDate.now().plusDays(2))
                                     .done(true)
                                     .build(),
                             Task.builder()
                                     .name("Skonfigurować bazę H2")
                                     .description("Przenieść plik bazy danych poza katalog resources i zaktualizować application.properties.")
-                                    .dueDate(LocalDate.now().minusDays(1))
                                     .done(true)
                                     .build(),
                             Task.builder()
                                     .name("Zapłacić rachunki")
                                     .description("Opłacić prąd, internet i czynsz za bieżący miesiąc.")
-                                    .dueDate(LocalDate.now().plusDays(5))
                                     .done(false)
                                     .build(),
                             Task.builder()

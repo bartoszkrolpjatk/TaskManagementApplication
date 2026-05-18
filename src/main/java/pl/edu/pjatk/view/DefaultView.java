@@ -8,10 +8,10 @@ import com.vaadin.flow.router.Route;
 @PageTitle("ToDo")
 class DefaultView extends VerticalLayout {
 
-    public DefaultView(ContentLayout contentLayout) {
+    public DefaultView(ContentLayoutView contentLayoutView) {
         setSizeFull();
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
-        add(contentLayout);
+        add(contentLayoutView);
     }
 }

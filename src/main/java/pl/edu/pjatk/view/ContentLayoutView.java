@@ -15,9 +15,9 @@ import pl.edu.pjatk.domain.tasks.TaskService;
 
 @Component
 @UIScope
-class ContentLayout extends VerticalLayout {
+class ContentLayoutView extends VerticalLayout {
 
-    public ContentLayout(TaskService taskService) {
+    public ContentLayoutView(TaskService taskService) {
         setWidth("50%");
         setHeight("75%");
         setMinWidth("400px");
@@ -27,7 +27,7 @@ class ContentLayout extends VerticalLayout {
         var grid = new Grid<>(TaskDto.class, false);
         grid.addThemeVariants(GridVariant.LUMO_COLUMN_BORDERS, GridVariant.ROW_STRIPES);
 
-        grid.addColumn(TaskDto::name)
+        grid.addComponentColumn(NameAndDueDateLayoutView::new)
                 .setHeader("Task's name")
                 .setSortable(true)
                 .setTextAlign(ColumnTextAlign.START);

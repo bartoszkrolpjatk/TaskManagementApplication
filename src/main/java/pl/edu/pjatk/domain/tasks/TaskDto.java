@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Data
 @Builder
@@ -24,5 +25,9 @@ public class TaskDto {
                 .dueDate(entity.getDueDate())
                 .done(entity.isDone())
                 .build();
+    }
+
+    public Optional<LocalDate> dueDate() {
+        return Optional.ofNullable(dueDate);
     }
 }
