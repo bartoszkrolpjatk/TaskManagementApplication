@@ -7,9 +7,12 @@ import pl.edu.pjatk.domain.tasks.TaskDto;
 
 import java.time.LocalDate;
 
-class NameAndDueDateLayoutView extends VerticalLayout {
+class ActiveTaskLayoutView extends VerticalLayout {
 
-    public NameAndDueDateLayoutView(TaskDto task) {
+    public ActiveTaskLayoutView(TaskDto task) {
+        if (task.done())
+            throw new IllegalStateException(this.getClass().getSimpleName() + " is dedicated for active tasks!");
+
         setPadding(false);
         setSpacing(false);
         var nameSpan = new Span(task.name());
