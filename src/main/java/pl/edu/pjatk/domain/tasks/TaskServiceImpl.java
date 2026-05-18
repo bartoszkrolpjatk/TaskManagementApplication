@@ -24,4 +24,12 @@ class TaskServiceImpl implements TaskService {
                 .name(name)
                 .build());
     }
+
+    @Override
+    public void setDone(Long taskId, boolean value) {
+        var task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new RuntimeException("Task not exists by id"));
+        task.setDone(value);
+        taskRepository.save(task);
+    }
 }

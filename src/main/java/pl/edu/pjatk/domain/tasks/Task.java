@@ -23,7 +23,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 @Builder
 @AllArgsConstructor
-class Task {
+public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,4 +37,7 @@ class Task {
 
     @Column(name = "due_date")
     private LocalDate dueDate;
+
+    @Column(name = "done", nullable = false)
+    private boolean done;
 }

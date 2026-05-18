@@ -10,15 +10,19 @@ import java.time.LocalDate;
 @Builder
 @Accessors(fluent = true)
 public class TaskDto {
+    private final Long id;
     private final String name;
     private final String description;
     private final LocalDate dueDate;
+    private final boolean done;
 
     static TaskDto mapToDto(Task entity) {
         return TaskDto.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .description(entity.getDescription())
                 .dueDate(entity.getDueDate())
+                .done(entity.isDone())
                 .build();
     }
 }
