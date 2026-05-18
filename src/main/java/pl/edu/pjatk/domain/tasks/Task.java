@@ -1,4 +1,4 @@
-package pl.edu.pjatk.domain.bottles;
+package pl.edu.pjatk.domain.tasks;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,10 +29,10 @@ class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title", nullable = false)
-    private String title;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String description;
 
     @Column(name = "due_date")
