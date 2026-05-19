@@ -1,4 +1,7 @@
 src/main/frontend/
+.mvn/
+mvnw
+mvnw.cmd
 *.db
 merged.txt
 .idea/

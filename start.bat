@@ -1,0 +1,1 @@
+start "log" cmd /k mvnw.cmd spring-boot:run
