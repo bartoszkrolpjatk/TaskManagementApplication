@@ -32,4 +32,19 @@ class TaskServiceImpl implements TaskService {
         task.setDone(value);
         taskRepository.save(task);
     }
+
+    @Override
+    public void deleteTask(Long taskId) {
+        taskRepository.deleteById(taskId);
+    }
+
+    @Override
+    public void updateTask(TaskDto taskDto) {
+        var task = taskRepository.findById(taskDto.id())
+                .orElseThrow(() -> new RuntimeException("Task not exists by id"));
+        task.setName(taskDto.name());
+        task.setDescription(taskDto.description());
+        task.setDueDate(taskDto.dueDate().orElse(null));
+        taskRepository.save(task);
+    }
 }
