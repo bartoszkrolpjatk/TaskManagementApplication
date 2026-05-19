@@ -1,4 +1,6 @@
 src/main/frontend/
+*.db
+merged.txt
 .idea/
 target/
 !.mvn/wrapper/maven-wrapper.jar
