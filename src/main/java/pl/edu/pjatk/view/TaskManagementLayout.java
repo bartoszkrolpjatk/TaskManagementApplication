@@ -5,24 +5,24 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.spring.annotation.UIScope;
+import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.springframework.stereotype.Component;
 import pl.edu.pjatk.domain.tasks.TaskService;
 
 @Component
 @UIScope
-class TaskManagementLayout extends VerticalLayout {
+class TaskManagementLayout extends HorizontalLayout {
 
-    public TaskManagementLayout(TaskService taskService, TaskGridLayout taskGridLayout) {
-        setWidth("50%");
-        setHeight("75%");
-        setMinWidth("400px");
-        setMinHeight("200px");
-        setPadding(false);
+    public TaskManagementLayout(TaskService taskService, TaskGridLayout taskGridLayout, TaskDetailsLayout taskDetailsLayout) {
+        var verticalLayout = new VerticalLayout();
+        verticalLayout.setPadding(false);
 
         var addTaskBar = new HorizontalLayout();
         addTaskBar.setWidthFull();
+        addTaskBar.addClassName(LumoUtility.Padding.Right.MEDIUM);
 
         var newTaskTextField = new TextField();
         var addNewTaskButton = new Button(VaadinIcon.PLUS.create());
@@ -38,6 +38,11 @@ class TaskManagementLayout extends VerticalLayout {
         addTaskBar.add(newTaskTextField, addNewTaskButton);
         addTaskBar.expand(newTaskTextField);
 
-        add(taskGridLayout, addTaskBar);
+        verticalLayout.add(taskGridLayout, addTaskBar);
+
+        var splitLayout = new SplitLayout(verticalLayout, taskDetailsLayout);
+        splitLayout.setSizeFull();
+        splitLayout.setSplitterPosition(70);
+        add(splitLayout);
     }
 }

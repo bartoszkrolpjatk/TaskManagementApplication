@@ -22,23 +22,21 @@ class TaskGridLayout extends VerticalLayout {
     public static final String DONE_COLUMN = "Done";
 
     private final TaskService taskService;
+    private final TaskDetailsLayout taskDetailsLayout;
     private final Grid<TaskDto> activeTasksGrid;
     private final Grid<TaskDto> doneTasksGrid;
 
-    public TaskGridLayout(TaskService taskService) {
+    public TaskGridLayout(TaskService taskService, TaskDetailsLayout taskDetailsLayout) {
         this.taskService = taskService;
+        this.taskDetailsLayout = taskDetailsLayout;
         this.activeTasksGrid = new Grid<>(TaskDto.class, false);
         this.doneTasksGrid = new Grid<>(TaskDto.class, false);
 
         setSizeFull();
-        setPadding(false);
-        setSpacing(false);
-        addClassNames(
-                LumoUtility.Border.ALL,
+        addClassNames(LumoUtility.Border.ALL,
                 LumoUtility.BorderColor.CONTRAST_10,
                 LumoUtility.BorderRadius.MEDIUM,
-                LumoUtility.Overflow.HIDDEN
-        );
+                LumoUtility.Overflow.HIDDEN);
 
         setupActiveTasksGrid();
         setupDoneTasksGrid();
@@ -48,7 +46,7 @@ class TaskGridLayout extends VerticalLayout {
 
         refreshItems();
 
-        add(activeTasksGrid, doneTasksDetails);
+        add(activeTasksGrid, doneTasksDetails, taskDetailsLayout);
     }
 
     public void refreshItems() {
@@ -76,6 +74,8 @@ class TaskGridLayout extends VerticalLayout {
                 .setTextAlign(ColumnTextAlign.END)
                 .setAutoWidth(true)
                 .setFlexGrow(0);
+        activeTasksGrid.addSelectionListener(e -> e.getFirstSelectedItem()
+                .ifPresent(taskDetailsLayout::showDetails));
     }
 
     private Checkbox getDoneCheckbox(TaskDto task) {

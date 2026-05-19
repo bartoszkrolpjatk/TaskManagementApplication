@@ -12,6 +12,12 @@ class MasterView extends HorizontalLayout {
         setSizeFull();
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
+
+        taskManagementLayout.setWidth("70%");
+        taskManagementLayout.setHeight("75%");
+        taskManagementLayout.setMinWidth("400px");
+        taskManagementLayout.setMinHeight("200px");
+
         add(taskManagementLayout);
     }
 }
