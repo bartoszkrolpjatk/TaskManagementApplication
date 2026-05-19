@@ -10,16 +10,16 @@ import java.time.LocalDate;
 class ActiveTaskNameCellLayout extends VerticalLayout {
 
     public ActiveTaskNameCellLayout(TaskDto task) {
-        if (task.done())
+        if (task.isDone())
             throw new IllegalStateException(this.getClass().getSimpleName() + " is dedicated for active tasks!");
 
         setPadding(false);
         setSpacing(false);
-        var nameSpan = new Span(task.name());
+        var nameSpan = new Span(task.getName());
         var dueDateSpan = new Span("-");
         dueDateSpan.addClassName(LumoUtility.FontSize.SMALL);
 
-        task.dueDate().ifPresent(dueDate -> {
+        task.getDueDate().ifPresent(dueDate -> {
             dueDateSpan.setText(dueDate.toString());
             var now = LocalDate.now();
             if (dueDate.isBefore(now) || dueDate.isEqual(now)) {

@@ -82,25 +82,25 @@ class TaskDetailsLayout extends VerticalLayout {
 
     public void showDetails(TaskDto task) {
         this.currentTask = task;
-        taskName.setValue(task.name());
-        taskDescription.setValue(task.description());
-        taskDueDate.setValue(task.dueDate().orElse(null));
+        taskName.setValue(task.getName());
+        taskDescription.setValue(task.getDescription());
+        taskDueDate.setValue(task.getDueDate().orElse(null));
         setVisible(true);
     }
 
     private void updateTask() {
         taskService.updateTask(TaskDto.builder()
-                .id(currentTask.id())
+                .id(currentTask.getId())
                 .name(taskName.getValue())
                 .description(taskDescription.getValue())
                 .dueDate(taskDueDate.getValue())
-                .done(currentTask.done())
+                .done(currentTask.isDone())
                 .build());
         taskGridLayout.refreshItems();
     }
 
     private void deleteTask() {
-        taskService.deleteTask(currentTask.id());
+        taskService.deleteTask(currentTask.getId());
         taskGridLayout.refreshItems();
     }
 
