@@ -9,7 +9,6 @@ import java.util.Optional;
 
 @Data
 @Builder
-@Accessors(fluent = true)
 public class TaskDto {
     private final Long id;
     private final String name;
@@ -27,7 +26,7 @@ public class TaskDto {
                 .build();
     }
 
-    public Optional<LocalDate> dueDate() {
+    public Optional<LocalDate> getDueDate() {
         return Optional.ofNullable(dueDate);
     }
 }

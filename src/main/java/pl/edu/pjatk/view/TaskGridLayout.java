@@ -68,7 +68,7 @@ class TaskGridLayout extends VerticalLayout {
                 .setHeader(TASK_NAME_COLUMN)
                 .setSortable(true)
                 .setTextAlign(ColumnTextAlign.START)
-                .setComparator(Comparator.comparing(TaskDto::name, String.CASE_INSENSITIVE_ORDER));
+                .setComparator(Comparator.comparing(TaskDto::getName, String.CASE_INSENSITIVE_ORDER));
         activeTasksGrid.addComponentColumn(this::getDoneCheckbox)
                 .setHeader(DONE_COLUMN)
                 .setTextAlign(ColumnTextAlign.END)
@@ -79,9 +79,9 @@ class TaskGridLayout extends VerticalLayout {
     }
 
     private Checkbox getDoneCheckbox(TaskDto task) {
-        var checkbox = new Checkbox(task.done());
+        var checkbox = new Checkbox(task.isDone());
         checkbox.addValueChangeListener(e -> {
-            taskService.setDone(task.id(), e.getValue());
+            taskService.setDone(task.getId(), e.getValue());
             refreshItems();
         });
         return checkbox;

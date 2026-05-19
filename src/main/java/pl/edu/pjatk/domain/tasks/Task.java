@@ -22,7 +22,7 @@ import java.util.Optional;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 public class Task {
 

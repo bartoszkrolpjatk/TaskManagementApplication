@@ -7,8 +7,8 @@ import pl.edu.pjatk.domain.tasks.TaskDto;
 class DoneTaskNameCellSpan extends Span {
 
     public DoneTaskNameCellSpan(TaskDto task) {
-        super(task.name());
-        if (!task.done())
+        super(task.getName());
+        if (!task.isDone())
             throw new IllegalStateException(this.getClass().getSimpleName() + " is dedicated for done tasks!");
         addClassNames(LumoUtility.FontSize.SMALL, LumoUtility.TextColor.DISABLED);
         getStyle().set("text-decoration", "line-through");
