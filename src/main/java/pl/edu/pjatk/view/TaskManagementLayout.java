@@ -12,9 +12,9 @@ import pl.edu.pjatk.domain.tasks.TaskService;
 
 @Component
 @UIScope
-class ContentLayoutView extends VerticalLayout {
+class TaskManagementLayout extends VerticalLayout {
 
-    public ContentLayoutView(TaskService taskService, GridLayoutView gridLayoutView) {
+    public TaskManagementLayout(TaskService taskService, TaskGridLayout taskGridLayout) {
         setWidth("50%");
         setHeight("75%");
         setMinWidth("400px");
@@ -31,13 +31,13 @@ class ContentLayoutView extends VerticalLayout {
 
         addNewTaskButton.addClickListener(e -> {
             taskService.addTask(newTaskTextField.getValue());
-            gridLayoutView.refreshItems();
+            taskGridLayout.refreshItems();
             newTaskTextField.clear();
         });
 
         addTaskBar.add(newTaskTextField, addNewTaskButton);
         addTaskBar.expand(newTaskTextField);
 
-        add(gridLayoutView, addTaskBar);
+        add(taskGridLayout, addTaskBar);
     }
 }

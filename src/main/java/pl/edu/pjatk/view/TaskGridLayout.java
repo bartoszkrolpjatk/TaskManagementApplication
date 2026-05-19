@@ -17,7 +17,7 @@ import java.util.Comparator;
 
 @Component
 @UIScope
-class GridLayoutView extends VerticalLayout {
+class TaskGridLayout extends VerticalLayout {
     public static final String TASK_NAME_COLUMN = "Task's name";
     public static final String DONE_COLUMN = "Done";
 
@@ -25,7 +25,7 @@ class GridLayoutView extends VerticalLayout {
     private final Grid<TaskDto> activeTasksGrid;
     private final Grid<TaskDto> doneTasksGrid;
 
-    public GridLayoutView(TaskService taskService) {
+    public TaskGridLayout(TaskService taskService) {
         this.taskService = taskService;
         this.activeTasksGrid = new Grid<>(TaskDto.class, false);
         this.doneTasksGrid = new Grid<>(TaskDto.class, false);
@@ -57,11 +57,8 @@ class GridLayoutView extends VerticalLayout {
     }
 
     private void setupDoneTasksGrid() {
-        doneTasksGrid.addComponentColumn(DoneTaskLayoutView::new)
-                .setHeader(TASK_NAME_COLUMN)
-                .setTextAlign(ColumnTextAlign.START);
+        doneTasksGrid.addComponentColumn(DoneTaskNameCellSpan::new);
         doneTasksGrid.addComponentColumn(this::getDoneCheckbox)
-                .setHeader(DONE_COLUMN)
                 .setTextAlign(ColumnTextAlign.END)
                 .setAutoWidth(true)
                 .setFlexGrow(0);
@@ -69,7 +66,7 @@ class GridLayoutView extends VerticalLayout {
 
     private void setupActiveTasksGrid() {
         activeTasksGrid.addThemeVariants(GridVariant.LUMO_COLUMN_BORDERS, GridVariant.ROW_STRIPES);
-        activeTasksGrid.addComponentColumn(ActiveTaskLayoutView::new)
+        activeTasksGrid.addComponentColumn(ActiveTaskNameCellLayout::new)
                 .setHeader(TASK_NAME_COLUMN)
                 .setSortable(true)
                 .setTextAlign(ColumnTextAlign.START)

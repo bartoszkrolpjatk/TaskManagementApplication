@@ -7,9 +7,9 @@ import pl.edu.pjatk.domain.tasks.TaskDto;
 
 import java.time.LocalDate;
 
-class ActiveTaskLayoutView extends VerticalLayout {
+class ActiveTaskNameCellLayout extends VerticalLayout {
 
-    public ActiveTaskLayoutView(TaskDto task) {
+    public ActiveTaskNameCellLayout(TaskDto task) {
         if (task.done())
             throw new IllegalStateException(this.getClass().getSimpleName() + " is dedicated for active tasks!");
 
