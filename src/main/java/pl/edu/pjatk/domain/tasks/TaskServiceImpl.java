@@ -46,7 +46,7 @@ class TaskServiceImpl implements TaskService {
         var task = taskRepository.findById(taskDto.getId())
                 .orElseThrow(() -> new RuntimeException("Task not exists by id"));
         task.setName(taskDto.getName());
-        task.setDescription(taskDto.getDescription());
+        task.setDescription(taskDto.getDescription().orElse(null));
         task.setDueDate(taskDto.getDueDate().orElse(null));
         taskRepository.save(task);
     }

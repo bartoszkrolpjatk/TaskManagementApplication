@@ -29,4 +29,8 @@ public class TaskDto {
     public Optional<LocalDate> getDueDate() {
         return Optional.ofNullable(dueDate);
     }
+
+    public Optional<String> getDescription() {
+        return Optional.ofNullable(description);
+    }
 }

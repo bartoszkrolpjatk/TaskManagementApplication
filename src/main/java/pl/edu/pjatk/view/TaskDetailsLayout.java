@@ -83,7 +83,10 @@ class TaskDetailsLayout extends VerticalLayout {
     public void showDetails(TaskDto task) {
         this.currentTask = task;
         taskName.setValue(task.getName());
-        taskDescription.setValue(task.getDescription());
+        task.getDescription()
+                .ifPresentOrElse(taskDescription::setValue, taskDescription::clear);
+        task.getDueDate()
+                .ifPresentOrElse(taskDueDate::setValue, taskDueDate::clear);
         taskDueDate.setValue(task.getDueDate().orElse(null));
         setVisible(true);
     }
